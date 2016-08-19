@@ -8,7 +8,7 @@ namespace NeuralClicker
 {
     public class Neuron
     {
-        private const double LEARNING_RATE = 0.7;
+        private const double LEARNING_RATE = 0.1;
 
         private double[] _weights;
 
@@ -17,11 +17,11 @@ namespace NeuralClicker
             _weights = weights;
         }
 
-        public Neuron()
+        public Neuron(int count)
         {
             var rng = new Random();
 
-            var weights = new double[7];
+            var weights = new double[count];
 
             for (int i = 0; i < weights.Length; i++)
             {

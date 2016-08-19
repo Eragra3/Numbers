@@ -24,13 +24,13 @@ namespace NeuralClicker
 
         private char[] _letters = { 'a','b','c','d','e','f','g','h',
             'i','j','k','l','m','n','o','p', 'q','r','s',
-            't','u','v','w','x','y','z'};
+            't','u','v','w','x','y','z', ' '};
 
         private Random _rng = new Random();
-        private string SECRET_TEXT = "daniel";
+        private const string SECRET_TEXT = "emil rusin";
         private int _currentLetter = 0;
 
-        private Neuron _neuron = new Neuron();
+        private Neuron _neuron = new Neuron(SECRET_TEXT.Length + 1);
 
         public MainWindow()
         {
@@ -72,7 +72,7 @@ namespace NeuralClicker
             var correctLetter = SECRET_TEXT[_currentLetter];
             var correctLetterIndex = Array.FindIndex(_letters, e => e == correctLetter);
 
-            var inputs = new double[7] { 0, 0, 0, 0, 0, 0, -1 };
+            var inputs = new double[11] { 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, -1 };
             inputs[_currentLetter] = 1;
 
             _neuron.Train(inputs, correctLetterIndex);
@@ -80,7 +80,7 @@ namespace NeuralClicker
 
         private char GetNeuralGuess()
         {
-            var inputs = new double[7] { 0, 0, 0, 0, 0, 0, -1 };
+            var inputs = new double[11] { 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, -1 };
             inputs[_currentLetter] = 1;
 
             var guess = _neuron.Feedforward(inputs);
